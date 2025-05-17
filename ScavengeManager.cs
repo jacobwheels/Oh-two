@@ -6,8 +6,14 @@ namespace O2Game // Added namespace
 {
     public class ScavengeManager : MonoBehaviour
     {
-        private InventoryManager inventoryManager;
-        private ResourceManager resourceManager;
+        [SerializeField] private InventoryManager inventoryManager;
+        [SerializeField] private UIManager uiManager; // Add this reference
+
+    public void OnScavengeCompleted(ResourceTypes.ScavengeResourceType type, int amount)
+    {
+        inventoryManager.AddScavengeResource(type, amount);
+        uiManager.UpdateInventoryUI(); // Refresh the UI
+    }
 
         private bool allTimersActive = false;
 
